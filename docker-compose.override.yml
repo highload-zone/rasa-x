@@ -1,0 +1,20 @@
+version: "3.4"
+
+x-rasa-services: &default-rasa-service
+  volumes:
+  - ./credentials.yml:/app/credentials.yml
+  - ./endpoints.yml:/app/endpoints.yml
+  - ./models:/app/models
+  - ./data:/app/data
+  - ./test_end_to_end:/app/test_end_to_end
+  - ./test_NLU:/app/test_NLU
+  - ./config.yml:/app/config.yml
+  - ./domain.yml:/app/domain.yml
+
+
+services:
+  app:
+    image: rasa/rasa-sdk:latest
+    volumes:
+      - ./actions:/app/actions
+      - ./data:/app/data

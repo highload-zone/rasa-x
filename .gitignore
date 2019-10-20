@@ -1,0 +1,7 @@
+.env
+certs/
+actions/*
+data/*
+config.yml
+domain.yml
+*.md
