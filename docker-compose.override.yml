@@ -14,7 +14,9 @@ x-rasa-services: &default-rasa-service
 
 services:
   app:
-    image: rasa/rasa-sdk:latest
+    build:
+            context: rasa-app/
+    image: rasa-app
     volumes:
       - ./actions:/app/actions
       - ./data:/app/data
