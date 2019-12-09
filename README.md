@@ -13,7 +13,3 @@
 >REDIS_PASSWORD=<random_string>  
 ### CreateUser
 *python rasa_x_commands.py create --update admin me MYPASSWORD*
-
-
-
-Maintainer: Vitaly Evodin vitaly.evodin@gmail.com

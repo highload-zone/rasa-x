@@ -97,6 +97,8 @@ services:
       PASSWORD_SALT: ${PASSWORD_SALT}
       RASA_X_USER_ANALYTICS: "0"
       SANIC_RESPONSE_TIMEOUT: "3600"
+#   depends_on:
+#     - db
 
   rasa-production:
     <<: *default-rasa-service
@@ -130,6 +132,20 @@ services:
     depends_on:
       - rasa-production
 
+  db:
+    restart: always
+    image: "bitnami/postgresql:11.2.0"
+    networks:
+            - rasa
+    expose:
+      - "5432"
+    environment:
+      POSTGRESQL_USERNAME: "${DB_USER:-admin}"
+      POSTGRESQL_PASSWORD: "${DB_PASSWORD}"
+      POSTGRESQL_DATABASE: "${DB_DATABASE:-rasa}"
+    volumes:
+      - db:/bitnami/postgresql
+
   rabbit:
     restart: always
     image: "bitnami/rabbitmq:3.7.17"
@@ -149,7 +165,8 @@ services:
     networks:
             - rasa
     ports:
-            - "127.0.0.1:8081:8080"
+        - "80:8080"
+        - "443:8443"
     volumes:
       - ./terms:/opt/bitnami/nginx/conf/bitnami/terms
     depends_on:
