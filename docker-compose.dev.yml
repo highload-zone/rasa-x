@@ -5,6 +5,7 @@ networks:
                 name: rasa
 
 volumes:
+        db:
         models:
 
 x-database-credentials: &database-credentials
