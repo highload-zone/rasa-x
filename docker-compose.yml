@@ -83,6 +83,7 @@ services:
     volumes:
       - models:/app/models
       - ./environments.yml:/app/environments.yml
+      - ./endpoints.yml:/app/endpoints.yml
       - ./logs:/logs
       - ./auth:/app/auth
       - ./data:/app/data
